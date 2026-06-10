@@ -502,6 +502,16 @@ private struct SmartView: View {
                             DemandSegmentRow(segment: segment)
                         }
                     }
+                    PremiumPanel(title: "Clienti da ricontattare", icon: "person.crop.circle.badge.exclamationmark") {
+                        let inactive = store.inactiveClients(limit: 5)
+                        if inactive.isEmpty {
+                            EmptyState(title: "Tutti attivi", subtitle: "Nessun cliente da recuperare al momento.", icon: "checkmark.circle")
+                        } else {
+                            ForEach(inactive) { client in
+                                FollowUpClientRow(client: client)
+                            }
+                        }
+                    }
                     PremiumPanel(title: "Clienti premium", icon: "crown") {
                         ForEach(Array(store.bestClients.prefix(5).enumerated()), id: \.element.0.id) { item in
                             ValueClientRow(rank: item.offset + 1, client: item.element.0, value: item.element.1)
@@ -962,6 +972,36 @@ private struct ServicePerformanceRow: View {
             }
             Spacer()
             Text(currency(performance.revenue)).font(.headline)
+        }
+        .padding(12)
+        .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+private struct FollowUpClientRow: View {
+    var client: Client
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 12) {
+                InitialBadge(text: client.name, color: .orange)
+                VStack(alignment: .leading) {
+                    Text(client.name).font(.headline)
+                    Text(client.phone).font(.caption).foregroundStyle(.secondary)
+                }
+                Spacer()
+            }
+            HStack(spacing: 12) {
+                Link(destination: URL(string: "sms:\(client.phone)")!) {
+                    Label("SMS", systemImage: "message")
+                }
+                Link(destination: URL(string: "https://wa.me/\(digits(client.phone))")!) {
+                    Label("WhatsApp", systemImage: "phone")
+                }
+                Link(destination: URL(string: "mailto:\(client.email)")!) {
+                    Label("Email", systemImage: "envelope")
+                }
+            }
+            .font(.caption.weight(.semibold))
         }
         .padding(12)
         .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))

@@ -6,6 +6,7 @@
 - Improve README and thesis documentation
 - Add architecture diagrams
 - Add operational report view
+- Add inactive-client follow-up workflow
 - Add screenshots and demo video
 - Add a public GitHub repository description
 
