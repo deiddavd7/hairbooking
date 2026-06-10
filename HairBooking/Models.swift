@@ -177,6 +177,13 @@ struct DemandSegment: Identifiable, Hashable {
     var revenue: Double
 }
 
+struct ServicePerformance: Identifiable, Hashable {
+    var id: Service.ID { service.id }
+    var service: Service
+    var bookingCount: Int
+    var revenue: Double
+}
+
 extension Service {
     static let samples: [Service] = [
         Service(name: "Taglio uomo", durationMinutes: 30, price: 25, professionalType: .hairdresser),

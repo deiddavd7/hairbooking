@@ -27,6 +27,7 @@ flowchart TD
 - booking form
 - client registry
 - smart desk
+- reports
 - studio settings
 
 The UI observes `BookingStore` through `@EnvironmentObject`.
@@ -91,6 +92,7 @@ The Smart desk includes two explainable analytics features:
 
 - **No-show risk score:** upcoming bookings are scored with deterministic rules based on confirmation status, deposit, cancellation history, service duration and evening time slots.
 - **Demand segmentation:** active bookings are grouped into morning, afternoon and evening segments, then summarized by booking count and revenue.
+- **Service performance:** non-cancelled bookings are grouped by service to show booking count and generated revenue.
 
 This rule-based approach is intentionally transparent for the thesis prototype. In a production evolution, the same inputs can become features for a predictive model trained on historical booking outcomes.
 

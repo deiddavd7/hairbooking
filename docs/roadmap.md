@@ -5,6 +5,7 @@
 - Complete local SwiftUI app
 - Improve README and thesis documentation
 - Add architecture diagrams
+- Add operational report view
 - Add screenshots and demo video
 - Add a public GitHub repository description
 

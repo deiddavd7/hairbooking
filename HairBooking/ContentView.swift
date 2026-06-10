@@ -107,6 +107,7 @@ private struct StudioShellView: View {
             NewBookingView().tabItem { Label("Prenota", systemImage: "plus.circle.fill") }
             ClientsView().tabItem { Label("Clienti", systemImage: "person.2") }
             SmartView().tabItem { Label("Smart", systemImage: "wand.and.stars") }
+            ReportView().tabItem { Label("Report", systemImage: "chart.bar") }
             SettingsView().tabItem { Label("Studio", systemImage: "gearshape") }
         }
     }
@@ -516,6 +517,45 @@ private struct SmartView: View {
     }
 }
 
+private struct ReportView: View {
+    @EnvironmentObject private var store: BookingStore
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    StudioHeader(title: "Report", subtitle: "Indicatori economici, performance servizi e qualita operativa", icon: "chart.bar")
+                    HStack(spacing: 12) {
+                        MetricTile(title: "Ticket medio", value: currency(store.averageTicket), caption: "per prenotazione", icon: "chart.line.uptrend.xyaxis", color: .indigo)
+                        MetricTile(title: "Completamento", value: percent(store.completionRate), caption: "prenotazioni concluse", icon: "checkmark.seal", color: .green)
+                    }
+                    HStack(spacing: 12) {
+                        MetricTile(title: "Attive", value: "\(store.activeBookingsCount)", caption: "non annullate", icon: "calendar", color: StudioTheme.accent)
+                        MetricTile(title: "Annullate", value: "\(store.cancelledBookingsCount)", caption: "da monitorare", icon: "xmark.circle", color: .red)
+                    }
+                    PremiumPanel(title: "Performance servizi", icon: "scissors") {
+                        if store.servicePerformance.isEmpty {
+                            EmptyState(title: "Nessun dato", subtitle: "Le performance appariranno dopo le prime prenotazioni.", icon: "chart.bar.doc.horizontal")
+                        } else {
+                            ForEach(store.servicePerformance.prefix(6)) { performance in
+                                ServicePerformanceRow(performance: performance)
+                            }
+                        }
+                    }
+                    PremiumPanel(title: "Domanda per fascia", icon: "chart.bar.xaxis") {
+                        ForEach(store.demandSegments) { segment in
+                            DemandSegmentRow(segment: segment)
+                        }
+                    }
+                }
+                .padding(20)
+            }
+            .background(StudioTheme.background.ignoresSafeArea())
+            .navigationTitle("Report")
+        }
+    }
+}
+
 private struct SettingsView: View {
     @EnvironmentObject private var store: BookingStore
     @State private var backup = ""
@@ -908,6 +948,26 @@ private struct DemandSegmentRow: View {
     }
 }
 
+private struct ServicePerformanceRow: View {
+    var performance: ServicePerformance
+    var body: some View {
+        HStack {
+            Image(systemName: performance.service.professionalType == .hairdresser ? "scissors" : "paintbrush.pointed")
+                .frame(width: 38, height: 38)
+                .background(.indigo.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+                .foregroundStyle(.indigo)
+            VStack(alignment: .leading) {
+                Text(performance.service.name).font(.headline)
+                Text("\(performance.bookingCount) prenotazioni").font(.caption).foregroundStyle(.secondary)
+            }
+            Spacer()
+            Text(currency(performance.revenue)).font(.headline)
+        }
+        .padding(12)
+        .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+}
+
 private struct ReferenceCard: View {
     var reference: ClientReference
     var body: some View {
@@ -969,6 +1029,10 @@ private enum StudioTheme {
 
 private func currency(_ value: Double) -> String {
     value.formatted(.currency(code: "EUR"))
+}
+
+private func percent(_ value: Double) -> String {
+    value.formatted(.percent.precision(.fractionLength(0)))
 }
 
 private func digits(_ text: String) -> String {

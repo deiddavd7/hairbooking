@@ -135,6 +135,30 @@ final class BookingStore: ObservableObject {
         }
     }
 
+    var servicePerformance: [ServicePerformance] {
+        Dictionary(grouping: bookings.filter { $0.status != .cancelled }, by: { $0.service.id })
+            .compactMap { serviceID, bookings in
+                guard let service = services.first(where: { $0.id == serviceID }) ?? bookings.first?.service else { return nil }
+                return ServicePerformance(
+                    service: service,
+                    bookingCount: bookings.count,
+                    revenue: bookings.reduce(0) { $0 + $1.service.price }
+                )
+            }
+            .sorted { first, second in
+                if first.revenue == second.revenue { return first.bookingCount > second.bookingCount }
+                return first.revenue > second.revenue
+            }
+    }
+
+    var cancelledBookingsCount: Int {
+        bookings.filter { $0.status == .cancelled }.count
+    }
+
+    var activeBookingsCount: Int {
+        bookings.filter { $0.status != .cancelled }.count
+    }
+
     func login(email: String, password: String) -> Bool {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty, password.count >= 4 else { return false }
         currentUser = staff.first { $0.role == .owner } ?? staff.first

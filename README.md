@@ -57,6 +57,7 @@ docs/
 - Dashboard metrics are computed from the booking dataset without external services.
 - No-show risk is estimated with a transparent rule-based score that can evolve into a predictive model.
 - Demand is summarized by time segment to support staffing and schedule decisions.
+- A dedicated report view summarizes average ticket, completion rate, cancellations and service performance.
 - Data export uses a deterministic JSON encoder with ISO 8601 date formatting.
 - Notification scheduling is integrated with `UserNotifications`.
 
