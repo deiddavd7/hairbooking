@@ -58,6 +58,7 @@ docs/
 - No-show risk is estimated with a transparent rule-based score that can evolve into a predictive model.
 - Demand is summarized by time segment to support staffing and schedule decisions.
 - A dedicated report view summarizes average ticket, completion rate, cancellations and service performance.
+- The report view includes a 7-day revenue and workload forecast based on scheduled bookings.
 - The Smart desk highlights inactive clients and provides quick follow-up actions.
 - Data export uses a deterministic JSON encoder with ISO 8601 date formatting.
 - Notification scheduling is integrated with `UserNotifications`.

@@ -159,6 +159,26 @@ final class BookingStore: ObservableObject {
         bookings.filter { $0.status != .cancelled }.count
     }
 
+    var nextSevenDaysRevenue: Double {
+        weeklyWorkload.reduce(0) { $0 + $1.expectedRevenue }
+    }
+
+    var weeklyWorkload: [WorkloadDay] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        return (0..<7).compactMap { offset in
+            guard let date = calendar.date(byAdding: .day, value: offset, to: today) else { return nil }
+            let dayBookings = bookings(on: date).filter { $0.status != .cancelled }
+            return WorkloadDay(
+                date: date,
+                bookingCount: dayBookings.count,
+                bookedMinutes: dayBookings.reduce(0) { $0 + $1.service.durationMinutes },
+                expectedRevenue: dayBookings.reduce(0) { $0 + $1.service.price }
+            )
+        }
+    }
+
     func login(email: String, password: String) -> Bool {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty, password.count >= 4 else { return false }
         currentUser = staff.first { $0.role == .owner } ?? staff.first

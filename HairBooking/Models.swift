@@ -184,6 +184,14 @@ struct ServicePerformance: Identifiable, Hashable {
     var revenue: Double
 }
 
+struct WorkloadDay: Identifiable, Hashable {
+    var id: Date { date }
+    var date: Date
+    var bookingCount: Int
+    var bookedMinutes: Int
+    var expectedRevenue: Double
+}
+
 extension Service {
     static let samples: [Service] = [
         Service(name: "Taglio uomo", durationMinutes: 30, price: 25, professionalType: .hairdresser),

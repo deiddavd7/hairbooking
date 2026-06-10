@@ -543,6 +543,12 @@ private struct ReportView: View {
                         MetricTile(title: "Attive", value: "\(store.activeBookingsCount)", caption: "non annullate", icon: "calendar", color: StudioTheme.accent)
                         MetricTile(title: "Annullate", value: "\(store.cancelledBookingsCount)", caption: "da monitorare", icon: "xmark.circle", color: .red)
                     }
+                    PremiumPanel(title: "Previsione 7 giorni", icon: "calendar.badge.clock") {
+                        MetricStrip(title: "Ricavi attesi", value: currency(store.nextSevenDaysRevenue), icon: "eurosign.circle", color: .green)
+                        ForEach(store.weeklyWorkload) { day in
+                            WorkloadDayRow(day: day)
+                        }
+                    }
                     PremiumPanel(title: "Performance servizi", icon: "scissors") {
                         if store.servicePerformance.isEmpty {
                             EmptyState(title: "Nessun dato", subtitle: "Le performance appariranno dopo le prime prenotazioni.", icon: "chart.bar.doc.horizontal")
@@ -767,6 +773,26 @@ private struct MetricTile: View {
     }
 }
 
+private struct MetricStrip: View {
+    var title: String
+    var value: String
+    var icon: String
+    var color: Color
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .frame(width: 38, height: 38)
+                .background(color.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
+                .foregroundStyle(color)
+            Text(title).font(.headline)
+            Spacer()
+            Text(value).font(.headline.monospacedDigit())
+        }
+        .padding(12)
+        .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+}
+
 private struct BookingCard: View {
     var booking: Booking
     var body: some View {
@@ -972,6 +998,24 @@ private struct ServicePerformanceRow: View {
             }
             Spacer()
             Text(currency(performance.revenue)).font(.headline)
+        }
+        .padding(12)
+        .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+private struct WorkloadDayRow: View {
+    var day: WorkloadDay
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(day.date.formatted(date: .abbreviated, time: .omitted)).font(.headline)
+                Text("\(day.bookingCount) appuntamenti - \(day.bookedMinutes) min")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            Text(currency(day.expectedRevenue)).font(.headline)
         }
         .padding(12)
         .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
