@@ -12,8 +12,11 @@ The project is designed as a computer engineering thesis and portfolio repositor
 
 - Staff demo login and onboarding flow
 - Multi-operator booking calendar
+- Editable staff management with roles, specialties and active status
 - Daily agenda and weekly staff schedule
 - Client registry with searchable profiles
+- Editable client profiles with history and communication actions
+- Editable service catalog with prices, durations and professional categories
 - Booking creation and editing
 - Service catalog for hairdressing and tattoo workflows
 - Automatic time conflict detection per operator

@@ -299,10 +299,30 @@ final class BookingStore: ObservableObject {
         bookings = bookings.map { $0.service.id == service.id ? $0.replacing(service: service) : $0 }
     }
 
+    func serviceHasBookings(_ service: Service) -> Bool {
+        bookings.contains { $0.service.id == service.id }
+    }
+
+    func deleteService(_ service: Service) -> Bool {
+        guard !serviceHasBookings(service) else { return false }
+        services.removeAll { $0.id == service.id }
+        return true
+    }
+
     func updateStaff(_ member: StaffMember) {
         guard let index = staff.firstIndex(where: { $0.id == member.id }) else { return }
         staff[index] = member
         bookings = bookings.map { $0.professional.id == member.id ? $0.replacing(professional: member) : $0 }
+    }
+
+    func staffHasBookings(_ member: StaffMember) -> Bool {
+        bookings.contains { $0.professional.id == member.id }
+    }
+
+    func deleteStaff(_ member: StaffMember) -> Bool {
+        guard !staffHasBookings(member), staff.count > 1 else { return false }
+        staff.removeAll { $0.id == member.id }
+        return true
     }
 
     func addReference(client: Client, title: String, kind: ProfessionalType, note: String) {

@@ -433,25 +433,30 @@ private struct ClientDetailView: View {
     @EnvironmentObject private var store: BookingStore
     let client: Client
     @State private var showingReference = false
+    @State private var editingClient: Client?
+
+    private var displayedClient: Client {
+        store.clients.first { $0.id == client.id } ?? client
+    }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 18) {
-                    StudioHeader(title: client.name, subtitle: client.phone, icon: "person.crop.circle")
+                    StudioHeader(title: displayedClient.name, subtitle: displayedClient.phone, icon: "person.crop.circle")
                     PremiumPanel(title: "Comunicazioni", icon: "message") {
-                        Link("SMS", destination: URL(string: "sms:\(client.phone)")!)
-                        Link("WhatsApp", destination: URL(string: "https://wa.me/\(digits(client.phone))")!)
-                        Link("Email", destination: URL(string: "mailto:\(client.email)")!)
+                        Link("SMS", destination: URL(string: "sms:\(displayedClient.phone)")!)
+                        Link("WhatsApp", destination: URL(string: "https://wa.me/\(digits(displayedClient.phone))")!)
+                        Link("Email", destination: URL(string: "mailto:\(displayedClient.email)")!)
                     }
                     PremiumPanel(title: "Storico cliente", icon: "clock.arrow.circlepath") {
-                        let history = store.clientHistory(for: client)
+                        let history = store.clientHistory(for: displayedClient)
                         if history.isEmpty { Text("Nessuno storico").foregroundStyle(.secondary) }
                         ForEach(history) { BookingCard(booking: $0) }
                     }
                     PremiumPanel(title: "Foto e reference", icon: "photo.on.rectangle") {
                         Button { showingReference = true } label: { Label("Aggiungi reference", systemImage: "plus.circle.fill") }
-                        ForEach(store.references(for: client)) { reference in
+                        ForEach(store.references(for: displayedClient)) { reference in
                             ReferenceCard(reference: reference)
                         }
                     }
@@ -460,7 +465,15 @@ private struct ClientDetailView: View {
             }
             .background(StudioTheme.background.ignoresSafeArea())
             .navigationTitle("Scheda cliente")
-            .sheet(isPresented: $showingReference) { AddReferenceView(client: client) }
+            .toolbar {
+                Button { editingClient = displayedClient } label: { Image(systemName: "pencil") }
+            }
+            .sheet(isPresented: $showingReference) { AddReferenceView(client: displayedClient) }
+            .sheet(item: $editingClient) { client in
+                AddClientView(client: client) { saved in
+                    store.updateClient(saved)
+                }
+            }
         }
     }
 }
@@ -589,6 +602,18 @@ private struct SettingsView: View {
                     }
                     PremiumPanel(title: "Staff e ruoli", icon: "person.3") {
                         ForEach(store.staff) { member in StaffRow(member: member) }
+                        NavigationLink {
+                            StaffManagementView()
+                        } label: {
+                            Label("Gestisci team", systemImage: "person.crop.circle.badge.gearshape")
+                        }
+                    }
+                    PremiumPanel(title: "Catalogo servizi", icon: "scissors") {
+                        NavigationLink {
+                            ServicesView()
+                        } label: {
+                            Label("Gestisci servizi e prezzi", systemImage: "list.bullet.rectangle")
+                        }
                     }
                     PremiumPanel(title: "Orari, pause, ferie", icon: "calendar.badge.clock") {
                         ForEach($store.availability) { $rule in
@@ -696,17 +721,209 @@ private struct AddReferenceView: View {
 
 private struct ServicesView: View {
     @EnvironmentObject private var store: BookingStore
+    @State private var editingService: Service?
+    @State private var showingNewService = false
+    @State private var showDeleteError = false
+
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(ProfessionalType.allCases) { type in
-                    Section(type.rawValue) {
-                        ForEach(store.services.filter { $0.professionalType == type }) { ServiceRow(service: $0) }
+        List {
+            ForEach(ProfessionalType.allCases) { type in
+                Section(type.rawValue) {
+                    ForEach(store.services.filter { $0.professionalType == type }) { service in
+                        Button { editingService = service } label: {
+                            ServiceRow(service: service)
+                        }
+                        .buttonStyle(.plain)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                showDeleteError = !store.deleteService(service)
+                            } label: {
+                                Label("Elimina", systemImage: "trash")
+                            }
+                        }
                     }
                 }
             }
-            .navigationTitle("Servizi")
         }
+        .navigationTitle("Servizi")
+        .toolbar {
+            Button { showingNewService = true } label: { Image(systemName: "plus.circle.fill") }
+        }
+        .sheet(item: $editingService) { service in
+            ServiceEditorView(service: service) { saved in
+                store.updateService(saved)
+            }
+        }
+        .sheet(isPresented: $showingNewService) {
+            ServiceEditorView { service in
+                store.services.append(service)
+            }
+        }
+        .alert("Servizio in uso", isPresented: $showDeleteError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Non puoi eliminare un servizio gia presente nello storico prenotazioni.")
+        }
+    }
+}
+
+private struct ServiceEditorView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var name: String
+    @State private var durationMinutes: Int
+    @State private var price: Double
+    @State private var professionalType: ProfessionalType
+    private var service: Service?
+    var onSave: (Service) -> Void
+
+    init(service: Service? = nil, onSave: @escaping (Service) -> Void) {
+        self.service = service
+        self.onSave = onSave
+        _name = State(initialValue: service?.name ?? "")
+        _durationMinutes = State(initialValue: service?.durationMinutes ?? 30)
+        _price = State(initialValue: service?.price ?? 0)
+        _professionalType = State(initialValue: service?.professionalType ?? .hairdresser)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Nome servizio", text: $name)
+                Stepper("Durata \(durationMinutes) min", value: $durationMinutes, in: 15...300, step: 15)
+                TextField("Prezzo", value: $price, format: .currency(code: "EUR"))
+                Picker("Categoria", selection: $professionalType) {
+                    ForEach(ProfessionalType.allCases) { type in
+                        Text(type.rawValue).tag(type)
+                    }
+                }
+            }
+            .navigationTitle(service == nil ? "Nuovo servizio" : "Modifica servizio")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Annulla") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Salva") {
+                        onSave(Service(id: service?.id ?? UUID(), name: name, durationMinutes: durationMinutes, price: price, professionalType: professionalType))
+                        dismiss()
+                    }
+                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
+                }
+            }
+        }
+    }
+}
+
+private struct StaffManagementView: View {
+    @EnvironmentObject private var store: BookingStore
+    @State private var editingMember: StaffMember?
+    @State private var showingNewMember = false
+    @State private var showDeleteError = false
+
+    var body: some View {
+        List {
+            Section("Team") {
+                ForEach(store.staff) { member in
+                    Button { editingMember = member } label: {
+                        StaffRow(member: member)
+                    }
+                    .buttonStyle(.plain)
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            showDeleteError = !store.deleteStaff(member)
+                        } label: {
+                            Label("Elimina", systemImage: "trash")
+                        }
+                    }
+                }
+            }
+        }
+        .navigationTitle("Team")
+        .toolbar {
+            Button { showingNewMember = true } label: { Image(systemName: "plus.circle.fill") }
+        }
+        .sheet(item: $editingMember) { member in
+            StaffEditorView(member: member) { saved in
+                store.updateStaff(saved)
+            }
+        }
+        .sheet(isPresented: $showingNewMember) {
+            StaffEditorView { member in
+                store.staff.append(member)
+            }
+        }
+        .alert("Operatore non eliminabile", isPresented: $showDeleteError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Non puoi eliminare l'unico operatore o un operatore gia presente nello storico prenotazioni.")
+        }
+    }
+}
+
+private struct StaffEditorView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var name: String
+    @State private var role: StaffRole
+    @State private var specialties: Set<ProfessionalType>
+    @State private var colorName: String
+    @State private var isActive: Bool
+    private var member: StaffMember?
+    var onSave: (StaffMember) -> Void
+
+    init(member: StaffMember? = nil, onSave: @escaping (StaffMember) -> Void) {
+        self.member = member
+        self.onSave = onSave
+        _name = State(initialValue: member?.name ?? "")
+        _role = State(initialValue: member?.role ?? .operatorRole)
+        _specialties = State(initialValue: Set(member?.specialties ?? [.hairdresser]))
+        _colorName = State(initialValue: member?.colorName ?? "teal")
+        _isActive = State(initialValue: member?.isActive ?? true)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Nome", text: $name)
+                Picker("Ruolo", selection: $role) {
+                    ForEach(StaffRole.allCases) { role in
+                        Text(role.rawValue).tag(role)
+                    }
+                }
+                Section("Specialita") {
+                    ForEach(ProfessionalType.allCases) { type in
+                        Toggle(type.rawValue, isOn: specialtyBinding(for: type))
+                    }
+                }
+                Picker("Colore", selection: $colorName) {
+                    Text("Teal").tag("teal")
+                    Text("Indigo").tag("indigo")
+                    Text("Orange").tag("orange")
+                }
+                Toggle("Attivo", isOn: $isActive)
+            }
+            .navigationTitle(member == nil ? "Nuovo operatore" : "Modifica operatore")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Annulla") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Salva") {
+                        onSave(StaffMember(id: member?.id ?? UUID(), name: name, role: role, specialties: Array(specialties), colorName: colorName, isActive: isActive))
+                        dismiss()
+                    }
+                    .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty || specialties.isEmpty)
+                }
+            }
+        }
+    }
+
+    private func specialtyBinding(for type: ProfessionalType) -> Binding<Bool> {
+        Binding(
+            get: { specialties.contains(type) },
+            set: { enabled in
+                if enabled {
+                    specialties.insert(type)
+                } else {
+                    specialties.remove(type)
+                }
+            }
+        )
     }
 }
 

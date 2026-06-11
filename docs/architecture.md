@@ -26,6 +26,8 @@ flowchart TD
 - weekly calendar
 - booking form
 - client registry
+- editable service catalog
+- editable staff management
 - smart desk
 - reports
 - studio settings

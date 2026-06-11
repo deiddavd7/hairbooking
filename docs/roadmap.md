@@ -8,6 +8,9 @@
 - Add operational report view
 - Add 7-day workload, revenue and capacity forecast
 - Add inactive-client follow-up workflow
+- Add editable client profiles
+- Add editable service catalog
+- Add editable staff management
 - Add screenshots and demo video
 - Add a public GitHub repository description
 
