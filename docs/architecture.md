@@ -134,7 +134,13 @@ Current quality practices:
 - XCTest coverage for booking conflicts, slot suggestions, deletion rules and report metrics
 - Form-level validation for booking payments and staff/service compatibility
 
+See [testing.md](testing.md) for the local and CI verification workflow.
+
 Recommended next steps:
 
 - UI tests for booking creation
 - Snapshot tests for major screens
+
+## Security Notes
+
+The current app is a local-first academic prototype. Demo login and cloud sync are intentionally simulated. See [../SECURITY.md](../SECURITY.md) for the security boundary and production requirements.

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added MIT license, security policy, support notes, testing guide and release checklist.
+- Renamed the CI workflow to iOS Tests for clearer repository status.
 - Added README preview assets and portfolio demo script.
 - Added suggested GitHub repository description and topics.
 - Added `HairBookingTests` XCTest target.

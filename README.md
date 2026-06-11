@@ -1,6 +1,6 @@
 # HairBooking Studio Pro
 
-[![iOS Build](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml/badge.svg)](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml)
+[![iOS Tests](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml/badge.svg)](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml)
 
 HairBooking Studio Pro is an iOS SwiftUI application for managing bookings, clients, services, staff, payments and operational insights for hair salons, tattoo studios and small appointment-based businesses.
 
@@ -47,7 +47,7 @@ The project is designed as a computer engineering thesis and portfolio repositor
 - **Persistence:** Codable snapshots saved locally
 - **Platform:** iOS
 - **IDE:** Xcode
-- **CI:** GitHub Actions iOS build workflow
+- **CI:** GitHub Actions iOS test workflow
 
 ## Repository Structure
 
@@ -64,10 +64,12 @@ docs/
   architecture.md         # System architecture and design decisions
   thesis-proposal.md      # Thesis framing, goals and research questions
   roadmap.md              # Portfolio and production evolution plan
+  testing.md              # Local and CI testing workflow
+  release-checklist.md    # Release preparation checklist
   demo-script.md          # Suggested presentation flow
   github-profile.md       # Suggested repository description and topics
 .github/
-  workflows/ios.yml       # GitHub Actions iOS build workflow
+  workflows/ios.yml       # GitHub Actions iOS test workflow
 ```
 
 ## Quality And Workflow
@@ -107,6 +109,10 @@ Use [docs/demo-script.md](docs/demo-script.md) for a short portfolio or thesis p
 
 Suggested GitHub repository description and topics are available in [docs/github-profile.md](docs/github-profile.md).
 
+## Testing
+
+See [docs/testing.md](docs/testing.md) for local typecheck, XCTest and CI instructions.
+
 ## Thesis Scope
 
 The current implementation is a complete local prototype. The thesis can evolve it in three directions:
@@ -142,4 +148,4 @@ Planned production-grade extensions:
 
 ## License
 
-This project is intended for academic and portfolio use. Add a license before publishing the repository publicly.
+This project is released under the MIT License. See [LICENSE](LICENSE).

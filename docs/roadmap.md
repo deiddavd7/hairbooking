@@ -17,10 +17,9 @@
 ## Milestone 2: Code Quality
 
 - Continue splitting SwiftUI feature files by area
-- Add unit tests for booking conflicts
-- Add unit tests for suggested slot generation
+- Expand unit tests for edge cases and persistence
 - Add UI tests for the main booking flow
-- Add GitHub Actions build workflow
+- Add snapshot tests for major screens
 
 ## Milestone 3: Backend Foundation
 
@@ -49,10 +48,8 @@
 
 ## Suggested GitHub Issues
 
-- Add unit tests for conflict detection
-- Add unit tests for suggested slots
 - Extract dashboard views into separate files
 - Add screenshots to README
-- Add GitHub Actions build workflow
+- Add UI tests for booking creation
 - Design backend API specification
 - Add no-show prediction dataset model
