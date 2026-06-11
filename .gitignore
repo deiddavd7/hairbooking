@@ -20,3 +20,6 @@ Package.resolved
 # Playgrounds
 timeline.xctimeline
 playground.xcworkspace
+
+# Unrelated local projects
+PortfolioShop/
