@@ -11,6 +11,7 @@
 		1A0000120000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000002 /* ContentView.swift */; };
 		1A0000130000000000000001 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000003 /* Models.swift */; };
 		1A0000140000000000000001 /* BookingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000004 /* BookingStore.swift */; };
+		1A0000150000000000000001 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000005 /* SharedViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		1A0000100000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1A0000100000000000000003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1A0000100000000000000004 /* BookingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStore.swift; sourceTree = "<group>"; };
+		1A0000100000000000000005 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +29,7 @@
 
 /* Begin PBXGroup section */
 		1A0000030000000000000001 = {isa = PBXGroup; children = (1A0000040000000000000001 /* HairBooking */, 1A0000050000000000000001 /* Products */); sourceTree = "<group>"; };
-		1A0000040000000000000001 /* HairBooking */ = {isa = PBXGroup; children = (1A0000100000000000000001 /* HairBookingApp.swift */, 1A0000100000000000000002 /* ContentView.swift */, 1A0000100000000000000003 /* Models.swift */, 1A0000100000000000000004 /* BookingStore.swift */); path = HairBooking; sourceTree = "<group>"; };
+		1A0000040000000000000001 /* HairBooking */ = {isa = PBXGroup; children = (1A0000100000000000000001 /* HairBookingApp.swift */, 1A0000100000000000000002 /* ContentView.swift */, 1A0000100000000000000005 /* SharedViews.swift */, 1A0000100000000000000003 /* Models.swift */, 1A0000100000000000000004 /* BookingStore.swift */); path = HairBooking; sourceTree = "<group>"; };
 		1A0000050000000000000001 /* Products */ = {isa = PBXGroup; children = (1A0000010000000000000001 /* HairBooking.app */); name = Products; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
@@ -67,7 +69,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1A0000080000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (1A0000110000000000000001 /* HairBookingApp.swift in Sources */, 1A0000120000000000000001 /* ContentView.swift in Sources */, 1A0000130000000000000001 /* Models.swift in Sources */, 1A0000140000000000000001 /* BookingStore.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+		1A0000080000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (1A0000110000000000000001 /* HairBookingApp.swift in Sources */, 1A0000120000000000000001 /* ContentView.swift in Sources */, 1A0000150000000000000001 /* SharedViews.swift in Sources */, 1A0000130000000000000001 /* Models.swift in Sources */, 1A0000140000000000000001 /* BookingStore.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */

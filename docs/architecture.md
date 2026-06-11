@@ -18,7 +18,7 @@ flowchart TD
 
 ### SwiftUI Views
 
-`ContentView.swift` contains the app flow and screens:
+`ContentView.swift` contains the app flow and feature screens:
 
 - login
 - onboarding
@@ -31,6 +31,8 @@ flowchart TD
 - smart desk
 - reports
 - studio settings
+
+`SharedViews.swift` contains reusable cards, rows, badges, theme colors and formatting helpers used across the feature screens.
 
 The UI observes `BookingStore` through `@EnvironmentObject`.
 

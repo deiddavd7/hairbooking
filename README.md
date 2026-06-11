@@ -44,6 +44,7 @@ The project is designed as a computer engineering thesis and portfolio repositor
 HairBooking/
   BookingStore.swift      # Application state, persistence and business logic
   ContentView.swift       # SwiftUI screens and reusable UI components
+  SharedViews.swift       # Shared UI components, theme and formatting helpers
   Models.swift            # Domain models and sample data
   HairBookingApp.swift    # App entry point
 docs/

@@ -16,7 +16,7 @@
 
 ## Milestone 2: Code Quality
 
-- Split large SwiftUI file into feature files
+- Continue splitting SwiftUI feature files by area
 - Add unit tests for booking conflicts
 - Add unit tests for suggested slot generation
 - Add UI tests for the main booking flow
