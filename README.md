@@ -37,6 +37,7 @@ The project is designed as a computer engineering thesis and portfolio repositor
 - **Persistence:** Codable snapshots saved locally
 - **Platform:** iOS
 - **IDE:** Xcode
+- **CI:** GitHub Actions iOS build workflow
 
 ## Repository Structure
 
@@ -51,7 +52,16 @@ docs/
   architecture.md         # System architecture and design decisions
   thesis-proposal.md      # Thesis framing, goals and research questions
   roadmap.md              # Portfolio and production evolution plan
+.github/
+  workflows/ios.yml       # GitHub Actions iOS build workflow
 ```
+
+## Quality And Workflow
+
+- CI build workflow for pushes and pull requests on `main`
+- Contribution guidelines in `CONTRIBUTING.md`
+- Release history in `CHANGELOG.md`
+- GitHub issue and pull request templates
 
 ## Engineering Highlights
 

@@ -349,6 +349,37 @@ private struct BookingForm: View {
     var actionTitle: String
     var action: () -> Void
 
+    private var selectedService: Service? {
+        store.services.first { $0.id == selectedServiceID }
+    }
+
+    private var eligibleStaff: [StaffMember] {
+        guard let selectedService else { return store.staff.filter(\.isActive) }
+        return store.staff.filter { $0.isActive && $0.specialties.contains(selectedService.professionalType) }
+    }
+
+    private var canSave: Bool {
+        selectedClientID != nil &&
+        selectedServiceID != nil &&
+        selectedStaffID != nil &&
+        deposit >= 0 &&
+        paidAmount >= 0 &&
+        paymentTotal <= (selectedService?.price ?? 0)
+    }
+
+    private var paymentTotal: Double {
+        deposit + paidAmount
+    }
+
+    private var validationMessage: String? {
+        if eligibleStaff.isEmpty { return "Nessun operatore attivo copre questo servizio." }
+        if deposit < 0 || paidAmount < 0 { return "Gli importi non possono essere negativi." }
+        if let selectedService, paymentTotal > selectedService.price {
+            return "Acconto e saldo non possono superare il prezzo del servizio."
+        }
+        return nil
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
@@ -361,7 +392,7 @@ private struct BookingForm: View {
                         ForEach(store.services) { Text("\($0.name) - \($0.durationMinutes) min").tag(Service.ID?.some($0.id)) }
                     }
                     Picker("Operatore", selection: $selectedStaffID) {
-                        ForEach(store.staff.filter(\.isActive)) { Text($0.name).tag(StaffMember.ID?.some($0.id)) }
+                        ForEach(eligibleStaff) { Text($0.name).tag(StaffMember.ID?.some($0.id)) }
                     }
                     DatePicker("Data e ora", selection: $date, displayedComponents: [.date, .hourAndMinute])
                     Picker("Stato", selection: $status) {
@@ -372,6 +403,11 @@ private struct BookingForm: View {
                 PremiumPanel(title: "Pagamenti", icon: "creditcard") {
                     TextField("Acconto", value: $deposit, format: .currency(code: "EUR"))
                     TextField("Pagato extra/saldo", value: $paidAmount, format: .currency(code: "EUR"))
+                    if let validationMessage {
+                        Label(validationMessage, systemImage: "exclamationmark.triangle")
+                            .font(.caption)
+                            .foregroundStyle(.orange)
+                    }
                 }
                 PremiumPanel(title: "Reference e note", icon: "photo.on.rectangle") {
                     TextField("Reference foto/colore/tattoo", text: $referenceTitle)
@@ -382,14 +418,19 @@ private struct BookingForm: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(StudioTheme.accent, in: RoundedRectangle(cornerRadius: 8))
+                        .background(canSave ? StudioTheme.accent : .gray, in: RoundedRectangle(cornerRadius: 8))
                         .foregroundStyle(.white)
                 }
+                .disabled(!canSave)
             }
             .padding(20)
         }
         .background(StudioTheme.background.ignoresSafeArea())
         .navigationTitle(title)
+        .onChange(of: selectedServiceID) { _, _ in
+            guard !eligibleStaff.contains(where: { $0.id == selectedStaffID }) else { return }
+            selectedStaffID = eligibleStaff.first?.id
+        }
     }
 }
 

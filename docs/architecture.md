@@ -127,10 +127,15 @@ flowchart LR
 
 ## Quality Strategy
 
+Current quality practices:
+
+- Swift type checking during local development
+- GitHub Actions workflow for iOS build verification
+- Form-level validation for booking payments and staff/service compatibility
+
 Recommended next steps:
 
 - Unit tests for conflict detection
 - Unit tests for suggested slot generation
 - UI tests for booking creation
 - Snapshot tests for major screens
-- GitHub Actions workflow for build verification
