@@ -1,0 +1,42 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#F3F5F3"/>
+  <rect x="54" y="48" width="1092" height="664" rx="28" fill="#FBFBFA"/>
+  <rect x="94" y="88" width="86" height="86" rx="18" fill="#E3F0EE"/>
+  <text x="124" y="143" font-family="Arial, sans-serif" font-size="40" fill="#0A6E63">✦</text>
+  <text x="204" y="123" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#15211F">HairBooking Studio</text>
+  <text x="204" y="158" font-family="Arial, sans-serif" font-size="22" fill="#62706C">Agenda operativa, prenotazioni e ricavi in un unico pannello</text>
+
+  <rect x="94" y="216" width="240" height="142" rx="18" fill="#EFF7F5"/>
+  <text x="122" y="258" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0A6E63">Oggi</text>
+  <text x="122" y="310" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#15211F">8</text>
+  <text x="122" y="336" font-family="Arial, sans-serif" font-size="18" fill="#62706C">appuntamenti</text>
+
+  <rect x="366" y="216" width="240" height="142" rx="18" fill="#F0F0FA"/>
+  <text x="394" y="258" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#4B4FA9">Mese</text>
+  <text x="394" y="310" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">€4.280</text>
+  <text x="394" y="336" font-family="Arial, sans-serif" font-size="18" fill="#62706C">incasso previsto</text>
+
+  <rect x="638" y="216" width="240" height="142" rx="18" fill="#EDF8EF"/>
+  <text x="666" y="258" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#238848">Acconti</text>
+  <text x="666" y="310" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">€740</text>
+  <text x="666" y="336" font-family="Arial, sans-serif" font-size="18" fill="#62706C">incassati</text>
+
+  <rect x="910" y="216" width="196" height="142" rx="18" fill="#FFF2E5"/>
+  <text x="938" y="258" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#B76516">Saldo</text>
+  <text x="938" y="310" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#15211F">€620</text>
+  <text x="938" y="336" font-family="Arial, sans-serif" font-size="18" fill="#62706C">aperto</text>
+
+  <rect x="94" y="410" width="484" height="222" rx="20" fill="#F4F6F4"/>
+  <text x="126" y="452" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#15211F">Agenda giornaliera</text>
+  <rect x="126" y="482" width="420" height="48" rx="12" fill="#FFFFFF"/>
+  <text x="148" y="514" font-family="Arial, sans-serif" font-size="18" fill="#15211F">10:00  Giulia Rossi - Taglio e piega</text>
+  <rect x="126" y="544" width="420" height="48" rx="12" fill="#FFFFFF"/>
+  <text x="148" y="576" font-family="Arial, sans-serif" font-size="18" fill="#15211F">15:30  Marco Bianchi - Consulenza tattoo</text>
+
+  <rect x="622" y="410" width="484" height="222" rx="20" fill="#F4F6F4"/>
+  <text x="654" y="452" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#15211F">Smart insight</text>
+  <text x="654" y="494" font-family="Arial, sans-serif" font-size="21" fill="#0A6E63">Prossimo appuntamento</text>
+  <text x="654" y="526" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Sara Conti con Alessia, 16:00</text>
+  <text x="654" y="572" font-family="Arial, sans-serif" font-size="21" fill="#B76516">Saldo da incassare</text>
+  <text x="654" y="604" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Ci sono €620 ancora aperti</text>
+</svg>

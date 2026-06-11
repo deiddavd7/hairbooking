@@ -1,0 +1,28 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#F3F5F3"/>
+  <rect x="54" y="48" width="1092" height="664" rx="28" fill="#FBFBFA"/>
+  <text x="94" y="118" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">Report operativi</text>
+  <text x="94" y="154" font-family="Arial, sans-serif" font-size="22" fill="#62706C">Ricavi, performance servizi e saturazione della capacità</text>
+
+  <rect x="94" y="208" width="480" height="120" rx="18" fill="#F0F0FA"/>
+  <text x="128" y="252" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#4B4FA9">Ticket medio</text>
+  <text x="128" y="302" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">€58</text>
+
+  <rect x="626" y="208" width="480" height="120" rx="18" fill="#EDF8EF"/>
+  <text x="660" y="252" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#238848">Completamento</text>
+  <text x="660" y="302" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">86%</text>
+
+  <rect x="94" y="376" width="1012" height="244" rx="20" fill="#F4F6F4"/>
+  <text x="126" y="424" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15211F">Previsione 7 giorni</text>
+  <text x="126" y="462" font-family="Arial, sans-serif" font-size="20" fill="#238848">Ricavi attesi: €1.840</text>
+
+  <rect x="126" y="500" width="870" height="16" rx="8" fill="#E2E7E4"/>
+  <rect x="126" y="500" width="620" height="16" rx="8" fill="#0A6E63"/>
+  <text x="1010" y="518" font-family="Arial, sans-serif" font-size="18" fill="#15211F">71%</text>
+  <text x="126" y="552" font-family="Arial, sans-serif" font-size="20" fill="#15211F">Martedì · 6 appuntamenti · 420/600 min</text>
+
+  <rect x="126" y="584" width="870" height="16" rx="8" fill="#E2E7E4"/>
+  <rect x="126" y="584" width="780" height="16" rx="8" fill="#D9822B"/>
+  <text x="1010" y="602" font-family="Arial, sans-serif" font-size="18" fill="#15211F">89%</text>
+  <text x="126" y="636" font-family="Arial, sans-serif" font-size="20" fill="#15211F">Venerdì · 9 appuntamenti · 535/600 min</text>
+</svg>

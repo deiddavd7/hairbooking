@@ -1,8 +1,18 @@
 # HairBooking Studio Pro
 
+[![iOS Build](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml/badge.svg)](https://github.com/deiddavd7/hairbooking/actions/workflows/ios.yml)
+
 HairBooking Studio Pro is an iOS SwiftUI application for managing bookings, clients, services, staff, payments and operational insights for hair salons, tattoo studios and small appointment-based businesses.
 
 The project is designed as a computer engineering thesis and portfolio repository: it demonstrates mobile application architecture, local persistence, domain modeling, conflict detection, scheduling logic, dashboard metrics and a roadmap toward cloud synchronization and predictive analytics.
+
+![HairBooking dashboard preview](docs/assets/dashboard-preview.svg)
+
+## Preview
+
+| Dashboard | Smart Desk | Reports |
+| --- | --- | --- |
+| ![Dashboard preview](docs/assets/dashboard-preview.svg) | ![Smart desk preview](docs/assets/smart-preview.svg) | ![Report preview](docs/assets/report-preview.svg) |
 
 ## Thesis Working Title
 
@@ -54,6 +64,8 @@ docs/
   architecture.md         # System architecture and design decisions
   thesis-proposal.md      # Thesis framing, goals and research questions
   roadmap.md              # Portfolio and production evolution plan
+  demo-script.md          # Suggested presentation flow
+  github-profile.md       # Suggested repository description and topics
 .github/
   workflows/ios.yml       # GitHub Actions iOS build workflow
 ```
@@ -89,6 +101,12 @@ docs/
 
 If `xcodebuild` fails from the terminal because of Command Line Tools, select the full Xcode installation from **Xcode > Settings > Locations > Command Line Tools**.
 
+## Demo
+
+Use [docs/demo-script.md](docs/demo-script.md) for a short portfolio or thesis presentation flow.
+
+Suggested GitHub repository description and topics are available in [docs/github-profile.md](docs/github-profile.md).
+
 ## Thesis Scope
 
 The current implementation is a complete local prototype. The thesis can evolve it in three directions:
@@ -114,13 +132,13 @@ Planned production-grade extensions:
 
 ## Portfolio Checklist
 
-- Clean README with screenshots
+- Clean README with preview assets
 - Architecture documentation
 - Thesis proposal and technical report
-- GitHub Issues or Projects for roadmap tracking
-- Tagged releases for major milestones
-- Demo video or GIF
-- CI badge after adding automated tests
+- GitHub Actions badge
+- XCTest coverage
+- Demo script
+- GitHub Issues and pull request templates
 
 ## License
 

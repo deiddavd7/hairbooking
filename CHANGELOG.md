@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added README preview assets and portfolio demo script.
+- Added suggested GitHub repository description and topics.
 - Added `HairBookingTests` XCTest target.
 - Added unit tests for booking conflicts, suggested slots, service deletion, report metrics and no-show risk.
 - Updated GitHub Actions to run `xcodebuild test`.

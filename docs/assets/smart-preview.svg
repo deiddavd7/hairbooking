@@ -1,0 +1,26 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#F3F5F3"/>
+  <rect x="54" y="48" width="1092" height="664" rx="28" fill="#FBFBFA"/>
+  <text x="94" y="118" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15211F">Smart desk</text>
+  <text x="94" y="154" font-family="Arial, sans-serif" font-size="22" fill="#62706C">Decision support locale per agenda, rischio no-show e follow-up</text>
+
+  <rect x="94" y="206" width="470" height="192" rx="20" fill="#F4F6F4"/>
+  <text x="128" y="252" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15211F">Rischio no-show</text>
+  <text x="128" y="296" font-family="Arial, sans-serif" font-size="22" fill="#C84630">75% · Alto</text>
+  <text x="128" y="332" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Prenotazione non confermata, nessun acconto, servizio lungo</text>
+
+  <rect x="636" y="206" width="470" height="192" rx="20" fill="#F4F6F4"/>
+  <text x="670" y="252" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15211F">Slot consigliati</text>
+  <text x="670" y="296" font-family="Arial, sans-serif" font-size="22" fill="#0A6E63">Oggi · 11:30 · Vincenzo</text>
+  <text x="670" y="332" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Disponibile per taglio e piega senza conflitti</text>
+
+  <rect x="94" y="452" width="470" height="170" rx="20" fill="#FFF2E5"/>
+  <text x="128" y="498" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15211F">Clienti da ricontattare</text>
+  <text x="128" y="542" font-family="Arial, sans-serif" font-size="22" fill="#B76516">Laura M. · inattiva da 45+ giorni</text>
+  <text x="128" y="578" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Azioni rapide: SMS · WhatsApp · Email</text>
+
+  <rect x="636" y="452" width="470" height="170" rx="20" fill="#F0F0FA"/>
+  <text x="670" y="498" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15211F">Clienti premium</text>
+  <text x="670" y="542" font-family="Arial, sans-serif" font-size="22" fill="#4B4FA9">1 · Sara Conti · €520</text>
+  <text x="670" y="578" font-family="Arial, sans-serif" font-size="18" fill="#62706C">Classifica per valore generato</text>
+</svg>
