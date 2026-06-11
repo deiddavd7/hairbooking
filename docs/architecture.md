@@ -93,7 +93,7 @@ The Smart desk includes two explainable analytics features:
 - **No-show risk score:** upcoming bookings are scored with deterministic rules based on confirmation status, deposit, cancellation history, service duration and evening time slots.
 - **Demand segmentation:** active bookings are grouped into morning, afternoon and evening segments, then summarized by booking count and revenue.
 - **Service performance:** non-cancelled bookings are grouped by service to show booking count and generated revenue.
-- **Workload forecast:** scheduled bookings for the next seven days are aggregated into expected revenue, appointment count and booked minutes.
+- **Workload forecast:** scheduled bookings for the next seven days are aggregated into expected revenue, appointment count, booked minutes and capacity utilization based on staff availability.
 - **Client follow-up:** clients without recent completed or confirmed bookings are surfaced in the Smart desk with direct communication actions.
 
 This rule-based approach is intentionally transparent for the thesis prototype. In a production evolution, the same inputs can become features for a predictive model trained on historical booking outcomes.

@@ -170,10 +170,12 @@ final class BookingStore: ObservableObject {
         return (0..<7).compactMap { offset in
             guard let date = calendar.date(byAdding: .day, value: offset, to: today) else { return nil }
             let dayBookings = bookings(on: date).filter { $0.status != .cancelled }
+            let capacityMinutes = workingCapacityMinutes(on: date)
             return WorkloadDay(
                 date: date,
                 bookingCount: dayBookings.count,
                 bookedMinutes: dayBookings.reduce(0) { $0 + $1.service.durationMinutes },
+                capacityMinutes: capacityMinutes,
                 expectedRevenue: dayBookings.reduce(0) { $0 + $1.service.price }
             )
         }
@@ -389,6 +391,14 @@ final class BookingStore: ObservableObject {
 
     private static func currency(_ value: Double) -> String {
         value.formatted(.currency(code: "EUR"))
+    }
+
+    private func workingCapacityMinutes(on date: Date) -> Int {
+        guard let rule = availabilityRule(for: date), rule.isOpen else { return 0 }
+        let workingHours = max(rule.endHour - rule.startHour, 0)
+        let breakHours = max(rule.breakEndHour - rule.breakStartHour, 0)
+        let dailyMinutes = max(workingHours - breakHours, 0) * 60
+        return dailyMinutes * staff.filter(\.isActive).count
     }
 
     private func riskProfile(for booking: Booking) -> NoShowRisk {

@@ -1007,18 +1007,40 @@ private struct ServicePerformanceRow: View {
 private struct WorkloadDayRow: View {
     var day: WorkloadDay
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(day.date.formatted(date: .abbreviated, time: .omitted)).font(.headline)
-                Text("\(day.bookingCount) appuntamenti - \(day.bookedMinutes) min")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(day.date.formatted(date: .abbreviated, time: .omitted)).font(.headline)
+                    Text(capacityText)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Text(currency(day.expectedRevenue)).font(.headline)
             }
-            Spacer()
-            Text(currency(day.expectedRevenue)).font(.headline)
+            ProgressView(value: day.utilizationRate)
+                .tint(utilizationColor)
+            Text("Saturazione \(percent(day.utilizationRate))")
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(utilizationColor)
         }
         .padding(12)
         .background(StudioTheme.surface, in: RoundedRectangle(cornerRadius: 10))
+    }
+
+    private var capacityText: String {
+        if day.capacityMinutes == 0 {
+            return "\(day.bookingCount) appuntamenti - studio chiuso"
+        }
+        return "\(day.bookingCount) appuntamenti - \(day.bookedMinutes)/\(day.capacityMinutes) min"
+    }
+
+    private var utilizationColor: Color {
+        switch day.utilizationRate {
+        case 0..<0.45: return StudioTheme.accent
+        case 0.45..<0.8: return .orange
+        default: return .red
+        }
     }
 }
 

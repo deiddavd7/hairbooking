@@ -189,7 +189,13 @@ struct WorkloadDay: Identifiable, Hashable {
     var date: Date
     var bookingCount: Int
     var bookedMinutes: Int
+    var capacityMinutes: Int
     var expectedRevenue: Double
+
+    var utilizationRate: Double {
+        guard capacityMinutes > 0 else { return 0 }
+        return min(Double(bookedMinutes) / Double(capacityMinutes), 1)
+    }
 }
 
 extension Service {
