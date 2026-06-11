@@ -14,6 +14,12 @@ For a lightweight terminal check, run:
 swiftc -typecheck HairBooking/Models.swift HairBooking/BookingStore.swift HairBooking/SharedViews.swift HairBooking/ContentView.swift HairBooking/HairBookingApp.swift
 ```
 
+For the full verification path, run the `HairBooking` scheme tests from Xcode or use:
+
+```bash
+xcodebuild -project HairBooking.xcodeproj -scheme HairBooking -destination 'platform=iOS Simulator,name=iPhone 15' clean test
+```
+
 ## Development Guidelines
 
 - Keep domain logic in `BookingStore.swift` or dedicated model helpers.
@@ -35,6 +41,7 @@ Fix booking validation
 ## Pull Request Checklist
 
 - The app typechecks locally.
+- Unit tests pass when Xcode is available.
 - The affected workflow has been tested manually in the simulator when possible.
 - README or docs are updated if user-visible behavior changed.
 - The change is scoped to HairBooking and does not include unrelated local folders.

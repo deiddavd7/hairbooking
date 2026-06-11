@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added `HairBookingTests` XCTest target.
+- Added unit tests for booking conflicts, suggested slots, service deletion, report metrics and no-show risk.
+- Updated GitHub Actions to run `xcodebuild test`.
 - Added GitHub Actions iOS build workflow.
 - Added booking form validation for staff/service compatibility and payment totals.
 - Added repository contribution guidelines and GitHub workflow templates.

@@ -12,7 +12,12 @@
 		1A0000130000000000000001 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000003 /* Models.swift */; };
 		1A0000140000000000000001 /* BookingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000004 /* BookingStore.swift */; };
 		1A0000150000000000000001 /* SharedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000100000000000000005 /* SharedViews.swift */; };
+		1A0000320000000000000001 /* BookingStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0000310000000000000001 /* BookingStoreTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A0000330000000000000001 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = 1A00000A0000000000000001 /* Project object */; proxyType = 1; remoteGlobalIDString = 1A0000060000000000000001; remoteInfo = HairBooking; };
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1A0000010000000000000001 /* HairBooking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairBooking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,16 +26,20 @@
 		1A0000100000000000000003 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1A0000100000000000000004 /* BookingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStore.swift; sourceTree = "<group>"; };
 		1A0000100000000000000005 /* SharedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedViews.swift; sourceTree = "<group>"; };
+		1A0000300000000000000001 /* HairBookingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HairBookingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0000310000000000000001 /* BookingStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1A0000020000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		1A0000340000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A0000030000000000000001 = {isa = PBXGroup; children = (1A0000040000000000000001 /* HairBooking */, 1A0000050000000000000001 /* Products */); sourceTree = "<group>"; };
+		1A0000030000000000000001 = {isa = PBXGroup; children = (1A0000040000000000000001 /* HairBooking */, 1A0000350000000000000001 /* HairBookingTests */, 1A0000050000000000000001 /* Products */); sourceTree = "<group>"; };
 		1A0000040000000000000001 /* HairBooking */ = {isa = PBXGroup; children = (1A0000100000000000000001 /* HairBookingApp.swift */, 1A0000100000000000000002 /* ContentView.swift */, 1A0000100000000000000005 /* SharedViews.swift */, 1A0000100000000000000003 /* Models.swift */, 1A0000100000000000000004 /* BookingStore.swift */); path = HairBooking; sourceTree = "<group>"; };
-		1A0000050000000000000001 /* Products */ = {isa = PBXGroup; children = (1A0000010000000000000001 /* HairBooking.app */); name = Products; sourceTree = "<group>"; };
+		1A0000050000000000000001 /* Products */ = {isa = PBXGroup; children = (1A0000010000000000000001 /* HairBooking.app */, 1A0000300000000000000001 /* HairBookingTests.xctest */); name = Products; sourceTree = "<group>"; };
+		1A0000350000000000000001 /* HairBookingTests */ = {isa = PBXGroup; children = (1A0000310000000000000001 /* BookingStoreTests.swift */); path = HairBookingTests; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -45,12 +54,23 @@
 			productReference = 1A0000010000000000000001 /* HairBooking.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1A0000360000000000000001 /* HairBookingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A0000370000000000000001 /* Build configuration list for PBXNativeTarget "HairBookingTests" */;
+			buildPhases = (1A0000380000000000000001 /* Sources */, 1A0000340000000000000001 /* Frameworks */, 1A0000390000000000000001 /* Resources */);
+			buildRules = ();
+			dependencies = (1A00003A0000000000000001 /* PBXTargetDependency */);
+			name = HairBookingTests;
+			productName = HairBookingTests;
+			productReference = 1A0000300000000000000001 /* HairBookingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1A00000A0000000000000001 /* Project object */ = {
 			isa = PBXProject;
-			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1530; LastUpgradeCheck = 1530; TargetAttributes = {1A0000060000000000000001 = {CreatedOnToolsVersion = 15.3; }; }; };
+			attributes = {BuildIndependentTargetsInParallel = 1; LastSwiftUpdateCheck = 1530; LastUpgradeCheck = 1530; TargetAttributes = {1A0000060000000000000001 = {CreatedOnToolsVersion = 15.3; }; 1A0000360000000000000001 = {CreatedOnToolsVersion = 15.3; TestTargetID = 1A0000060000000000000001; }; }; };
 			buildConfigurationList = 1A00000B0000000000000001 /* Build configuration list for PBXProject "HairBooking" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = it;
@@ -60,17 +80,23 @@
 			productRefGroup = 1A0000050000000000000001 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (1A0000060000000000000001 /* HairBooking */);
+			targets = (1A0000060000000000000001 /* HairBooking */, 1A0000360000000000000001 /* HairBookingTests */);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1A0000090000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		1A0000390000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A0000080000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (1A0000110000000000000001 /* HairBookingApp.swift in Sources */, 1A0000120000000000000001 /* ContentView.swift in Sources */, 1A0000150000000000000001 /* SharedViews.swift in Sources */, 1A0000130000000000000001 /* Models.swift in Sources */, 1A0000140000000000000001 /* BookingStore.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+		1A0000380000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (1A0000320000000000000001 /* BookingStoreTests.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A00003A0000000000000001 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = 1A0000060000000000000001 /* HairBooking */; targetProxy = 1A0000330000000000000001 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1A00000C0000000000000001 /* Debug */ = {
@@ -207,11 +233,50 @@
 			};
 			name = Release;
 		};
+		1A00003B0000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.HairBookingStudioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HairBooking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HairBooking";
+			};
+			name = Debug;
+		};
+		1A00003C0000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@loader_path/Frameworks");
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.HairBookingStudioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HairBooking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HairBooking";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		1A00000B0000000000000001 /* Build configuration list for PBXProject "HairBooking" */ = {isa = XCConfigurationList; buildConfigurations = (1A00000C0000000000000001 /* Debug */, 1A00000D0000000000000001 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		1A0000070000000000000001 /* Build configuration list for PBXNativeTarget "HairBooking" */ = {isa = XCConfigurationList; buildConfigurations = (1A00000E0000000000000001 /* Debug */, 1A00000F0000000000000001 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		1A0000370000000000000001 /* Build configuration list for PBXNativeTarget "HairBookingTests" */ = {isa = XCConfigurationList; buildConfigurations = (1A00003B0000000000000001 /* Debug */, 1A00003C0000000000000001 /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 	};
 	rootObject = 1A00000A0000000000000001 /* Project object */;

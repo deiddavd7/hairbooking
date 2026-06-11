@@ -48,6 +48,8 @@ HairBooking/
   SharedViews.swift       # Shared UI components, theme and formatting helpers
   Models.swift            # Domain models and sample data
   HairBookingApp.swift    # App entry point
+HairBookingTests/
+  BookingStoreTests.swift # Unit tests for booking and reporting logic
 docs/
   architecture.md         # System architecture and design decisions
   thesis-proposal.md      # Thesis framing, goals and research questions
@@ -58,7 +60,8 @@ docs/
 
 ## Quality And Workflow
 
-- CI build workflow for pushes and pull requests on `main`
+- CI test workflow for pushes and pull requests on `main`
+- XCTest coverage for booking conflicts, slot suggestions, service deletion rules and report metrics
 - Contribution guidelines in `CONTRIBUTING.md`
 - Release history in `CHANGELOG.md`
 - GitHub issue and pull request templates
